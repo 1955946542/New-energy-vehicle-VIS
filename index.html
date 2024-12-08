@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="webthemez">
+  <title>China NEV Analytics</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
+  <link href="//cdn.staticfile.org/layui/2.9.9/css/layui.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/layui@2.8.0/dist/css/layui.css" />
+  <!-- Custom CSS -->
+  <link href="assets/css/styles.css" rel="stylesheet">
+  <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+  <link href="assets/css/animate-custom.css" rel="stylesheet">
+  <script src="assets/js/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/js/modernizr.custom.js"></script>
+
+  <!--echarts-->
+  <script src="assets/js/echarts.js"></script>
+  <!-- 引入中国地图数据 -->
+  <script src="assets/js/china.js"></script>
+  <script src="assets/js/theme.js"></script>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+  <!-- 背景动画 -->
+  <script src="assets/js/other/backgroud_animation.js"></script>
+
+  <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  <!--highcharts-->
+  <script src="assets/js/highmaps.js"></script>
+  <script src="assets/js/flowmap.js"></script>
+  <script src="assets/js/exporting.js"></script>
+  <script src="assets/js/offline-exporting.js"></script>
+  <script src="assets/js/accessivility.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+</head>
+
+<style>
+  .services_container {
+    display: flex;
+  }
+  
+  /* 添加背景容器样式 */
+  #background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* 确保内容在背景之上 */
+  .main-content {
+    position: relative;
+    z-index: 1;
+  }
+</style>
+
+<body>
+  <!-- 背景动画容器移到最外层 -->
+  <div id="background-animation"></div>
+
+  <!-- 所有内容包裹在 main-content 中 -->
+  <div class="main-content">
+    <!-- 原来的"全部为一个块"div -->
+    <div>
+      <div>
+        <!--开头部分-->
+        <div data-target="#navbar-main">
+          <!-- 导航栏 -->
+          <div id="navbar-main">
+            <div class="navbar navbar-inverse navbar-fixed-top" style="height: 80px; background-image:linear-gradient(to right, #f8f6ea,#c6c5bb);">
+              <div class="container">
+                <div class="navbar-header">
+                  <div class="pull-left logo">
+                    <a href="#home" class="logo-link">
+                      <img src="assets/img/car/car_new_logo.png" alt="Logo"/>
+                    </a>
+                    <h3 class="logo-text">China NEV Analytics</h3>
+                  </div>
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                </div>
+
+                <!--最顶上的导航跳转部分-->
+                <div class="navbar-collapse collapse">
+                  <ul class="nav navbar-nav pull-right">
+                    <li><a href="#home-section" >new car</a></li>
+                    <li> <a href="#maps" >汽车市场地图</a></li>
+                    <li> <a href="#brands" >新能源汽车品牌与畅销车型</a></li>
+                    <li> <a href="#sangji">总体销量</a></li>
+                    <li> <a href="#budget" >购车意向</a></li>
+                    <li> <a href="#contact">团队合作</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--导航栏 -->
+
+        <!--主页-->
+        <div id="home-section">
+          <div id="headerwrap" name="home" style="display: flex; flex-direction: column; justify-content: space-between; height: 780px; width: 100%;">
+
+            <!-- 假设这里有一个包含图片的 div 或其他元素，但在这里我们直接使用背景图片 -->
+            <div>
+              <div id="header-content"
+                style="flex: 1; background-size: 100% 100%;">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--主页-->
+      </div>
+      <!--开头部分-->
+
+      <!--头部边框样式-->
+<!--      <div class="div-pattern2"></div>-->
+    </div>
+
+    <!-- ==== 地图 ==== -->
+    <div id="maps" name="about">
+      <div class="container">
+        <div class="row white">
+          <h2 class="centered">汽车市场地图</h2>
+          <hr>
+          <!-- 内容描述 -->
+          <div class="col-md-12" style="margin:auto;left:0%;">
+            <div style="padding: 15px;">
+              <blockquote class="layui-elem-quote layui-text custom-quote" style="border-left: 5px solid #3CB4A4;width:auto;">
+                <b>中国汽车出口:</b> 超越日本，全球第一，这是2023年中国汽车出口交出的答卷。
+                ”中国汽车的足迹遍布全球，尤其是新能源汽车，已经成为闪闪发光的“国家名片”之一。2023年，我国汽车产销规模双双突破3000万辆，其中出口量达到491万辆，首次超过日本，跃居全球第一。除了出口，中国各大车企也纷纷通过自主或合作建厂等多种形式，探索欧洲、美洲、东南亚、中东、俄罗斯等广阔市场。中国车企绘制的出海蓝图正愈发丰满和生动。
+              </blockquote>
+            </div>
+
+            <!-- 时间轴和地图显示部分 -->
+            <div class="layui-row">
+              <div class="layui-col-md9">
+                <!-- 地图容器 -->
+                <div id="part020101" style="width:auto;height:700px;"></div>
+                <!-- 初始化地图的JavaScript -->
+                <script type="text/javascript" src="assets/js/part02/map_of_export.js"></script>
+                <script type="text/javascript">
+                  // 调用初始化地图的函数，并传入div的ID和TopoJSON文件的URL
+                  function initializeMapWithYear(year) {
+                    // 重新加载地图数据
+                    initializeMap('part020101', 'assets/js/part02/world.topo.json', year);
+                  }
+                </script>
+              </div>
+
+              <div class="layui-col-md3">
+                <!-- 统计图表容器 -->
+                <div id="part020102" style="width:auto;height:700px;"></div>
+
+                <!-- 选择年份的时间轴 -->
+                <div style="margin-top: 20px;">
+                  <label for="yearRange">选择年份：</label>
+                  <input type="range" id="yearRange" min="2017" max="2023" step="2" value="2023">
+                  <span id="yearLabel">2023</span>
+                </div>
+
+                <!-- Toggle Button for Chart Type -->
+                <button id="toggleChartType" class="btn btn-primary" style="margin-top: 20px;">
+                  切换为柱状图
+                </button>
+
+                <script type="text/javascript" src="assets/js/part02/chart_of_export.js"></script>
+
+                <script type="text/javascript">
+                  Highcharts.setOptions({
+                    colors: ['#20a162','#1661ab', '#815c94', '#973444']
+                  });
+
+                  // Default chart type: scatter
+                  let currentChartType = 'scatter';
+
+                  // Initialize the chart for the default year (2023)
+                  updateChart(2023, currentChartType);
+                  initializeMapWithYear(2023); // Initialize the map for default year
+
+                  // Update chart when year changes
+                  document.getElementById('yearRange').addEventListener('input', function() {
+                    const year = this.value;
+                    document.getElementById('yearLabel').textContent = year;
+                    updateChart(year, currentChartType); // Update chart
+                    initializeMapWithYear(year); // Update map
+                  });
+
+                  // Toggle between scatter and bar chart
+                  document.getElementById('toggleChartType').addEventListener('click', function() {
+                    // Toggle chart type
+                    currentChartType = (currentChartType === 'scatter') ? 'column' : 'scatter';
+                    this.textContent = (currentChartType === 'scatter') ? '切换为柱状图' : '切换为散点图';
+                    updateChart(2023, currentChartType); // Update chart with the new type
+                  });
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+            <!--part02的下部分-->
+            <div style="padding: 15px;">
+              <blockquote class="layui-elem-quote layui-text custom-quote" style="border-left: 5px solid #6b969a; width:auto;">
+                <b>新能源汽车市场的区域差异化较大，其最为主要的因素大体分为这三个：</b>一是受地区政策影响较大，无论是限号限购政策还是补贴政策，对新能源车市场形成区域差异化产生了巨大影响；二是受地区经济影响，充电设备等基础设施的搭建力度直接决定着消费者的选择；三是不同地区消费者的生活习惯、文化程度、收入情况都影响新能源汽车的消费行为
+              </blockquote>
+            </div>
+
+            <!--新能源汽车与人口 图-->
+            <div class="layui-row">
+              <div class="layui-col-md7">
+                <!-- 修改容器的样式,确保能正确显示切换效果 -->
+                <div id="part020201" style="width:1000px;height:600px;cursor:pointer;margin:auto">
+                  <div id="map-container"></div>
+                </div>
+                <script type="text/javascript" src="assets/js/part02/map_of_number.js"></script>
+                <script type="text/javascript">
+                  // 调用初始化地图的函数，并传入div的ID和TopoJSON文件的URL  
+                  initializeMap02('part020201', 'assets/js/part02/china.json');
+                </script>
+              </div>
+
+            </div>
+      </div>
+
+    </div>
+
+
+
+  <!-- ==== 车型 ==== -->
+  <div id='brands' class="services">
+    <div class="row white">
+      <h2 class="centered" style="margin-top: 50px">新能源汽车品牌与畅销车型</h2>
+      <hr>
+    </div>
+
+    <!-- 调整容器布局 -->
+    <div class="services_container">
+      <!-- 增加图表容器宽度和高度 -->
+      <div class="col-md-12" style="margin: 0 auto;">
+        <div id="part01" style="width: 100%; height: 1000px;"></div>
+        <script type="text/javascript" src="assets/js/part01/part01.js"></script>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==== 中国汽车市场总体销量 ==== -->
+  <div id="sangji" name="portfolio">
+    <div class="container">
+
+      <div class="row">
+        <h2 class="centered">中国汽车市场总体销量</h2>
+        <hr>
+      </div>
+
+
+      <div style="margin: auto">
+
+
+        <div class="col-md-12" style="margin:auto;left:0%;">
+          <div style="padding: 15px;">
+            <blockquote class="layui-elem-quote layui-text custom-quote" style="border-left: 5px solid #c5d366;">
+              <b>新能源汽车在中国市场的崛起是推动行业收入增长的主要动力之一。。</b>随着政策的扶持和市场需求的提升，新能源汽车的产量和销量显著增加。例如，政府推出的一系列政策，如购置税减免、牌照优惠和充电基础设施建设等，极大地促进了新能源汽车的普及。根据中国汽车工业协会的数据，2023年新能源汽车的产量和销量同比增长均超过50%，这进一步推动了整体汽车行业的增长。
+              除了新能源汽车的快速发展，传统燃油车市场也保持了相对稳定的增长。尽管受到环保政策和市场饱和度提升的影响，传统燃油车的增速有所放缓，但在部分细分市场，如豪华车和SUV，仍然表现出强劲的增长势头。消费者对高品质、智能化和个性化汽车的需求不断增加，推动了汽车制造商在产品创新和技术升级方面的投入<br />
+            </blockquote>
+          </div>
+
+          <div id="part0301" style="height:700px;margin:auto;left:0%;"></div>
+          <script type="text/javascript" src="assets/js/part03/part0301.js">
+          </script>
+        </div>
+
+<!--        <div class="col-md-12" style="margin:auto;left:0%;">-->
+<!--          <div style="padding: 15px;">-->
+<!--            <blockquote class="layui-elem-quote layui-text custom-quote" style="border-left: 5px solid #83962f;">-->
+<!--              <b>销量前十品牌不同能源车型占比:</b>乘联会公布了2023年汽车厂商销量情况，2023年12月乘用车市场零售销量为235.3万辆，同比增长8.5%，环比增长13.1%。从厂商零售销量排名来看，前十的车企分别为比亚迪、一汽-大众、上汽大众、吉利汽车、长安汽车、奇瑞汽车、东风日产、上汽通用五菱、一汽丰田和广汽丰田。<br />-->
+<!--            </blockquote>-->
+<!--          </div>-->
+<!--          <div id="part0302" style="height:520px;margin:auto;left:0%;"></div>-->
+<!--          <script type="text/javascript" src="assets/js/part03/part0302.js">-->
+<!--          </script>-->
+<!--        </div>-->
+      </div>
+    </div>
+  </div>
+
+    <div id="budget" name="about">
+      <div class="container">
+        <h2 class="centered">购车意向</h2>
+        <hr>
+
+        <div style="padding: 15px;">
+          <blockquote class="layui-elem-quote layui-text custom-quote" style="border-left: 5px solid #dcc672;">
+            <b>调研消费者购车预算变化:</b>10-30万主力预算区间份额超六成，高端消费份额增长明显；较为缓慢复苏的经济，地缘政治风险以及股市和房地产市场表现不佳等因素，导致消费信心低迷。用户对消费要求日益严苛、谨慎，但他们并没有放弃对更美好事物的追求。相比2021年，2023年购车预算10万以下的用户占比明显下降，而20-50万区间用户占比均上升了6.7%。
+          </blockquote>
+        </div>
+
+
+        <div class="col-md-5">
+          <div id="part020302" style="width:500px;height:400px;"></div>
+        </div>
+        <div class="col-md-5">
+          <div id="part020303" style="width:500px;height:400px;"></div>
+        </div>
+        <div class="col-md-5">
+          <div id="part020304" style="width:500px;height:400px;"></div>
+        </div>
+
+        <div class="col-md-12" style="margin:auto;left:0;">
+          <div style="padding: 15px;">
+            <blockquote class="layui-elem-quote layui-text custom-quote" style="border-left: 5px solid #83962f;">
+              <b>分城市级别来看:</b>分城市级别来看，2023年调研用户中，高线城市主力预算区间为20-30万，其中，一线和新一线城市30万以上预算用户占比，均达到30%以上。低线城市的主力预算区间为10-20万。<br />
+            </blockquote>
+          </div>
+          <div id="part0304" style="height:520px;margin:auto;left:0;"></div>
+          <script type="text/javascript" src="assets/js/part03/part0304.js">
+          </script>
+        </div>
+
+        <div class="col-md-12" style="margin:auto;left:0;">
+          <div style="padding: 15px;">
+            <blockquote class="layui-elem-quote layui-text custom-quote" style="border-left: 5px solid #83962f;">
+              <b>J.D.Power发布的2023中国新车购买意向研究显示，在1000分制的品牌影响力排名中:</b>豪华车品牌中，宝马（683分）品牌影响力得分最高，奥迪（680分）和梅赛德斯-奔驰（661分）排名第二和第三。主流车品牌中，比亚迪（678分）品牌影响力得分最高，其次是别克（659分）和北京现代（654分）。<br />
+            </blockquote>
+          </div>
+          <!-- 图表标题 -->
+          <h3 id="chartTitle" style="text-align: center; font-size: 20px; margin-bottom: 10px;">品牌影响力得分排名：豪华品牌</h3>
+          <!-- 切换按钮 -->
+          <div style="text-align: center; margin-bottom: 5px;">
+            <button id="toggleChartButton" class="layui-btn layui-btn-normal" style="margin-bottom: 10px;">切换图表</button>
+          </div>
+          <div id="part0303-container" style="width:1250px;margin: 0; padding: 0; display: flex; justify-content: flex-start;">
+            <div id="part0303" style="width: 1250px; height: 600px; margin-left: -50px"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ==== 最终感谢部分 ==== -->
+    <div id="contact" name="contact">
+      <div class="container" style="height:300px;">
+        <div class="row">
+          <h2 class="centered">团队合作</h2>
+          <hr>
+        </div>
+
+        <div class="md-col-12">
+          <div class="md-col-2"></div>
+          <div class="md-col-8" style="background: #fffefa;padding: 20px;">
+            <strong>团队成员</strong><br>
+            易虎<br>
+            张国权<br>
+            鞠霖<br>
+            董礼<br>
+            <p></p>
+            <!--          <strong>项目代码地址</strong><br>-->
+            <!--          <a href="">欢迎访问</a>-->
+          </div>
+          <div class="md-col-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="assets/js/smoothscroll.js"></script>
+    <script type="text/javascript" src="assets/js/custom-scripts.js"></script>
+    <!--地图-->
+
+
+
+
+
+<script src="assets/js/echarts.js"></script>
+<script src="assets/js/other/backgroud_animation.js"></script>
+<script>
+  // 等待 DOM 加载完成后初始化背景
+  document.addEventListener('DOMContentLoaded', function() {
+    const bgContainer = document.getElementById('background-animation');
+    if(bgContainer) {
+      initBackgroundAnimation(bgContainer);
+    }
+  });
+</script>
+  <script type="text/javascript" src="assets/js/part03/part0303.js">
+  </script>
+
+  <script type="text/javascript">
+    (async () => {
+      const topology = await fetch(
+              'assets/js/part02/china.json'
+      ).then(response => response.json());
+
+      // Create the chart
+      var pieChart = Highcharts.chart('part020302', {
+        chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie',
+          backgroundColor: 'transparent',
+          width:300,
+          events: {
+            load: function () {
+              var chart = this;
+              chart.renderer.text('2021', chart.plotLeft + chart.plotWidth / 2, chart.plotTop + chart.plotHeight / 2)
+                      .attr({
+                        zIndex: 5, // 设置文本的 zIndex，以确保它在其他元素之上
+                        align: 'center'
+                      })
+                      .css({
+                        fontSize: '24px', // 设置字体大小
+                        color: '#000' // 设置字体颜色
+                      })
+
+                      .add(); // 添加到图表中
+            }
+          }
+        },
+        title: {
+          text: '',
+          style: {
+            fontSize: '16px' // 字体大小
+          }
+        },
+        tooltip: {
+          pointFormat: '{series.name}: <b>{point.y}</b>'
+        }, plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: false
+            },
+            showInLegend: true,
+            innerSize: '50%', // 这里是相对于饼图半径的百分比
+          }
+        },
+
+        series: [{
+          name: 'Percentage',
+          colorByPoint: true,
+
+          data: [{
+            name: '十万及以下',
+            y: 15.1,
+            color:"#13548D",
+          }, {
+            name: '10-20万（含）',
+            y: 39.0,
+            color:"#3EB7E3",
+
+          }, {
+            name: '20-30万（含）',
+            y: 26.0,
+            color:"#159134",
+          }, {
+            name: '30-50万（含）',
+            y: 14.7,
+            color: "#84E65D",
+          }, {
+            name: '50-100万（含）',
+            y: 3.7,
+            color: "#E7B153",
+          }, {
+            name: '100万以上',
+            y: 1.5,
+            color:  "#EA521A",
+          },]
+        }],
+        roseType: 'radius', // 使用半径缩放
+      });
+
+
+      var pieChart = Highcharts.chart('part020303', {
+        chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie',
+          backgroundColor: 'transparent',
+          width:300,
+          events: {
+            load: function () {
+              var chart = this;
+              chart.renderer.text('2022', chart.plotLeft + chart.plotWidth / 2, chart.plotTop + chart.plotHeight / 2)
+                      .attr({
+                        zIndex: 5, // 设置文本的 zIndex，以确保它在其他元素之上
+                        align: 'center'
+                      })
+                      .css({
+                        fontSize: '24px', // 设置字体大小
+                        color: '#000' // 设置字体颜色
+                      })
+
+                      .add(); // 添加到图表中
+            }
+          }
+        },
+        title: {
+          text: '',
+          style: {
+            fontSize: '16px' // 字体大小
+          }
+        },
+        tooltip: {
+          pointFormat: '{series.name}: <b>{point.y}</b>'
+        }, plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: false
+            },
+            showInLegend: true,
+            innerSize: '50%', // 这里是相对于饼图半径的百分比
+          }
+        },
+
+        series: [{
+          name: 'Percentage',
+          colorByPoint: true,
+
+          data: [{
+            name: '十万及以下',
+            y: 8.8,
+            color:"#13548D",
+          }, {
+            name: '10-20万（含）',
+            y: 32.5,
+            color:"#3EB7E3",
+
+          }, {
+            name: '20-30万（含）',
+            y: 34.0,
+            color:"#159134",
+          }, {
+            name: '30-50万（含）',
+            y: 19.7,
+            color: "#84E65D",
+          }, {
+            name: '50-100万（含）',
+            y: 4.1,
+            color: "#E7B153",
+          }, {
+            name: '100万以上',
+            y: 0.9,
+            color:  "#EA521A",
+          },]
+        }],
+        roseType: 'radius', // 使用半径缩放
+      });
+
+      var pieChart = Highcharts.chart('part020304', {
+        chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie',
+          backgroundColor: 'transparent',
+          width:300,
+          events: {
+            load: function () {
+              var chart = this;
+              chart.renderer.text('2023', chart.plotLeft + chart.plotWidth / 2, chart.plotTop + chart.plotHeight / 2)
+                      .attr({
+                        zIndex: 5, // 设置文本的 zIndex，以确保它在其他元素之上
+                        align: 'center'
+                      })
+                      .css({
+                        fontSize: '24px', // 设置字体大小
+                        color: '#000' // 设置字体颜色
+                      })
+
+                      .add(); // 添加到图表中
+            }
+          }
+        },
+        title: {
+          text: '',
+          style: {
+            fontSize: '16px' // 字体大小
+          }
+        },
+        tooltip: {
+          pointFormat: '{series.name}: <b>{point.y}</b>'
+        }, plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: false
+            },
+            showInLegend: true,
+            innerSize: '50%', // 这里是相对于饼图半径的百分比
+          }
+        },
+
+        series: [{
+          name: 'Percentage',
+          colorByPoint: true,
+
+          data: [{
+            name: '十万及以下',
+            y: 5.5,
+            color:"#13548D",
+          }, {
+            name: '10-20万（含）',
+            y: 29.0,
+            color:"#3EB7E3",
+
+          }, {
+            name: '20-30万（含）',
+            y: 32.7,
+            color:"#159134",
+          }, {
+            name: '30-50万（含）',
+            y: 21.4,
+            color: "#84E65D",
+          }, {
+            name: '50-100万（含）',
+            y: 9.7,
+            color: "#E7B153",
+          }, {
+            name: '100万以上',
+            y: 2.0,
+            color:  "#EA521A",
+          },]
+        }],
+        roseType: 'radius', // 使用半径缩放
+      });
+
+
+      maphart.series[1].points.forEach(point => {
+        point.graphic.element.onclick = function () {
+          var name = point.name;
+          var data = pieChart.series[0].data;
+          console.log(name);
+          data.forEach(slice => {
+            console.log(slice.name);
+
+
+            if (slice.name === name) {
+
+              slice.slice(true, true);
+              slice.graphic.attr({
+                opacity: 1,
+                shadow: true,
+
+              });
+            } else {
+              slice.slice(false, true);
+              slice.graphic.attr({
+                opacity: 0.2,
+
+              });
+              // Unselect other slices
+            }
+          });
+          pieChart.redraw();
+        };
+      });
+
+    })();
+  </script>
+
+</body>
+</html>
