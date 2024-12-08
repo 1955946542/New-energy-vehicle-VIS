@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "echarts": "^5.5.0",
+    "highcharts": "^11.4.1",
+    "jsdom": "^24.0.0"
+  },
+  "type": "module"
+
+}
